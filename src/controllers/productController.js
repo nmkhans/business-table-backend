@@ -2,8 +2,10 @@ const Products = require("../models/ProductModel");
 
 const getProducts = async (req, res) => {
     const { pageno, perpage, search } = req.query;
+    const pageNo = parseInt(pageno);
+    const perPage = parseInt(perpage);
 
-    const skipRow = ((parseInt(pageno) - 1) * parseInt(perpage));
+    const skipRow = ((pageNo - 1) * perPage);
 
     if (search) {
         const searchRegx = { $regex: search, $options: "i" };
@@ -26,7 +28,7 @@ const getProducts = async (req, res) => {
                     rows: [
                         { $match: searchQuery },
                         { $skip: skipRow },
-                        { $limit: parseInt(perpage) }
+                        { $limit: perPage }
                     ]
                 }
             }
@@ -46,7 +48,7 @@ const getProducts = async (req, res) => {
                     ],
                     rows: [
                         { $skip: skipRow },
-                        { $limit: parseInt(perpage) }
+                        { $limit: perPage }
                     ]
                 }
             }
