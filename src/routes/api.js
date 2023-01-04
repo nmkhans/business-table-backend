@@ -1,5 +1,6 @@
 const express = require("express");
 const defaultController = require("../controllers/defaultController");
+const { getProducts } = require("../controllers/productController");
 
 //? define router
 const router = express.Router();
@@ -8,5 +9,8 @@ const router = express.Router();
 
 //? default api
 router.get("/", defaultController);
+
+//? get all products
+router.get("/get-products", getProducts)
 
 module.exports = router;
