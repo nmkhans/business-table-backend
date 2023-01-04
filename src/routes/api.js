@@ -10,7 +10,7 @@ const router = express.Router();
 //? default api
 router.get("/", defaultController);
 
-//? get all products
+//? get all products with search params and pagination
 router.get("/get-products", getProducts)
 
 module.exports = router;
